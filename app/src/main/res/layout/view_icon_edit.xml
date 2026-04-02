@@ -4,20 +4,22 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:background="#121212"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:background="@drawable/input_capsule">
 
-    <include layout="@layout/view_icon" />
+    <include
+        layout="@layout/view_icon"
+        android:id="@+id/inner_icon" />
 
     <EditText
         android:id="@+id/widget_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:background="@android:color/transparent"
         android:textColor="#FFFFFF"
         android:hint="Value"
-        android:textColorHint="#80FFFFFF"
-        android:inputType="text" />
+        android:textColorHint="#80FFFFFF" />
+
 </LinearLayout>

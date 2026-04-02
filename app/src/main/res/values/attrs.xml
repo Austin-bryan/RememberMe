@@ -5,4 +5,11 @@
         <attr name="customHint" format="string" />
         <attr name="isPassword" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="EventChipView">
+        <attr name="eventText" format="string" />
+        <attr name="eventColor" format="color" />
+        <attr name="eventConfirmed" format="boolean" />
+        <attr name="eventDarkText" format="boolean" />
+    </declare-styleable>
 </resources>

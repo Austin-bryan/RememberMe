@@ -11,7 +11,7 @@
     <color name="bg_main">#252525</color>
     <color name="bg_input">#151515</color>
     <color name="bg_header">#353535</color>
-    <color name="bg_day">#050505</color>
+    <color name="bg_day">#151515</color>
 
     <color name="outline_input">#000</color>
     <color name="outline_day">#252525</color>

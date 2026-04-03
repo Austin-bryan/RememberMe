@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:background="@color/bg_header"
         android:paddingStart="16dp"
-        android:paddingTop="32dp"
+        android:paddingTop="40dp"
         android:paddingEnd="16dp"
         android:paddingBottom="10dp">
 
@@ -128,69 +128,92 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="0dp">
 
-        <com.example.rememberme.EventChipView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            app:eventText="Blue Event"
-            app:eventColor="#4D8DFF"
-            app:eventConfirmed="true"
-            app:eventDarkText="false" />
-
-        <com.example.rememberme.EventChipView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            app:eventText="Pink Event"
-            app:eventColor="#FF5FA2"
-            app:eventConfirmed="false"
-            app:eventDarkText="false" />
-
-        <com.example.rememberme.EventChipView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            app:eventText="Orange Event"
-            app:eventColor="#FFA43C"
-            app:eventConfirmed="true"
-            app:eventDarkText="false" />
-
-        <com.example.rememberme.EventChipView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            app:eventText="Green Event"
-            app:eventColor="#6BCB77"
-            app:eventConfirmed="true"
-            app:eventDarkText="true" />
-
-        <com.example.rememberme.EventChipView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:eventText="Yellow Event"
-            app:eventColor="#F4D35E"
-            app:eventConfirmed="false"
-            app:eventDarkText="false" />
+            android:orientation="horizontal"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp">
 
-        <com.example.rememberme.EventChipView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            app:eventText="Cyan Event"
-            app:eventColor="#52D1DC"
-            app:eventConfirmed="false"
-            app:eventDarkText="false" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
 
-        <com.example.rememberme.EventChipView
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            app:eventText="White Event"
-            app:eventColor="#F4F4F4"
-            app:eventConfirmed="true"
-            app:eventDarkText="true" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp">
+
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp">
+
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp">
+
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp">
+
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+            <include layout="@layout/widget_calendar_day" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

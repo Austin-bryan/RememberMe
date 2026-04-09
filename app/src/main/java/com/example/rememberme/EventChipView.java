@@ -1,5 +1,7 @@
 package com.example.rememberme;
 
+import static androidx.core.util.TypedValueCompat.dpToPx;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -15,9 +17,13 @@ public class EventChipView extends FrameLayout {
     private TextView eventChipText;
 
     private String eventText = "Event";
+    private float eventTextSize = 8.5f;
     private int eventColor = Color.parseColor("#4D8DFF");
     private boolean eventConfirmed = true;
     private boolean eventDarkText = false;
+    private int eventPaddingHorizontal = 4;
+    private int eventPaddingVertical = 1;
+
 
     public EventChipView(Context context) {
         super(context);
@@ -46,6 +52,11 @@ public class EventChipView extends FrameLayout {
                 eventText = xmlText;
             }
 
+            eventTextSize = typedArray.getDimension(
+                    R.styleable.EventChipView_eventTextSize,
+                    spToPx(8)
+            );
+
             eventColor = typedArray.getColor(
                     R.styleable.EventChipView_eventColor,
                     Color.parseColor("#4D8DFF")
@@ -61,6 +72,16 @@ public class EventChipView extends FrameLayout {
                     false
             );
 
+            eventPaddingHorizontal = typedArray.getDimensionPixelSize(
+                    R.styleable.EventChipView_eventPaddingHorizontal,
+                    dpToPx(4)
+            );
+
+            eventPaddingVertical = typedArray.getDimensionPixelSize(
+                    R.styleable.EventChipView_eventPaddingVertical,
+                    dpToPx(1)
+            );
+
             typedArray.recycle();
         }
 
@@ -70,6 +91,13 @@ public class EventChipView extends FrameLayout {
     private void applyState() {
         eventChipText.setText(eventText);
         eventChipText.setTextColor(eventDarkText ? Color.BLACK : Color.WHITE);
+        eventChipText.setTextSize(pxToSp(eventTextSize));
+        eventChipText.setPadding(
+                eventPaddingHorizontal,
+                eventPaddingVertical,
+                eventPaddingHorizontal,
+                eventPaddingVertical
+        );
 
         GradientDrawable backgroundDrawable = (GradientDrawable) ContextCompat.getDrawable(
                 getContext(),
@@ -90,9 +118,19 @@ public class EventChipView extends FrameLayout {
         }
     }
 
+    private float pxToSp(float px) {
+        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+        return px / scaledDensity;
+    }
+
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
+    }
+
+    private float spToPx(float sp) {
+        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+        return sp * scaledDensity;
     }
 
     public void setEventText(String eventText) {

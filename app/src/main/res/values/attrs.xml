@@ -8,8 +8,19 @@
 
     <declare-styleable name="EventChipView">
         <attr name="eventText" format="string" />
+        <attr name="eventTextSize" format="dimension" />
         <attr name="eventColor" format="color" />
         <attr name="eventConfirmed" format="boolean" />
         <attr name="eventDarkText" format="boolean" />
+        <attr name="eventPaddingHorizontal" format="dimension" />
+        <attr name="eventPaddingVertical" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TimedEventView">
+        <attr name="timeText" format="string" />
+        <attr name="eventText" />
+        <attr name="eventColor" />
+        <attr name="eventConfirmed" />
+        <attr name="eventDarkText" />
     </declare-styleable>
 </resources>

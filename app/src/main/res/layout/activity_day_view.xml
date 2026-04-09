@@ -13,7 +13,7 @@
         android:gravity="center_vertical"
         android:background="@color/bg_header"
         android:paddingStart="16dp"
-        android:paddingTop="14dp"
+        android:paddingTop="60dp"
         android:paddingEnd="16dp"
         android:paddingBottom="14dp">
 
@@ -36,20 +36,59 @@
 
     </LinearLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/bg_main"
-        android:padding="16dp" />
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp">
+
+        <com.example.rememberme.TimedEventView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:eventTextSize="8sp"
+            app:eventPaddingHorizontal="3dp"
+            app:eventPaddingVertical="0dp"
+            app:timeText="9 AM"
+            app:eventText="Church"
+            app:eventColor="@color/event_white"
+            app:eventConfirmed="true"
+            app:eventDarkText="true" />
+
+        <com.example.rememberme.TimedEventView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+
+            app:timeText="1 PM"
+            app:eventText="Movie Night"
+            app:eventColor="@color/event_blue"
+            app:eventConfirmed="false"
+            app:eventDarkText="false" />
+
+        <com.example.rememberme.TimedEventView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:eventTextSize="8sp"
+            app:eventPaddingHorizontal="3dp"
+            app:eventPaddingVertical="0dp"
+            app:timeText="8 PM"
+            app:eventText="Sleep"
+            app:eventColor="@color/event_orange"
+            app:eventConfirmed="true"
+            app:eventDarkText="false" />
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Event"
         android:textColor="@color/white"
         android:backgroundTint="@color/accent_blue"

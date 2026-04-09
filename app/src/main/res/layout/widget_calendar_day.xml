@@ -24,8 +24,39 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
+        app:eventTextSize="8sp"
+        app:eventPaddingHorizontal="3dp"
+        app:eventPaddingVertical="0dp"
+        app:eventText="Church"
+        app:eventColor="@color/event_white"
+        app:eventConfirmed="true"
+        app:eventDarkText="true" />
+
+    <com.example.rememberme.EventChipView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:eventTextSize="8sp"
+        app:eventPaddingHorizontal="3dp"
+        app:eventPaddingVertical="0dp"
         app:eventText="Movie Night"
-        app:eventColor="#4D8DFF"
+        app:eventColor="@color/event_blue"
+        app:eventConfirmed="false"
+        app:eventDarkText="false" />
+
+    <com.example.rememberme.EventChipView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:eventTextSize="8sp"
+        app:eventPaddingHorizontal="3dp"
+        app:eventPaddingVertical="0dp"
+        app:eventText="Sleep"
+        app:eventColor="@color/event_orange"
         app:eventConfirmed="true"
         app:eventDarkText="false" />
 

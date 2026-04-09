@@ -23,7 +23,7 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_arrow_left"
             android:contentDescription="Back"
-            android:tint="@color/text_primary" />
+            app:tint="@color/text_primary" />
 
         <TextView
             android:id="@+id/newEventTitle"
@@ -50,42 +50,33 @@
         android:paddingTop="14dp"
         android:paddingEnd="16dp">
 
-        <com.example.rememberme.IconTextView
+        <com.example.rememberme.IconEditText
             android:layout_width="match_parent"
-            android:layout_marginTop="12dp"
             android:layout_height="wrap_content"
-            app:rowIcon="@drawable/ic_name"
-            app:rowIconTint="@color/text_muted"
-            app:rowText="Add Name"
-            app:rowTextColor="@color/text_muted" />
+            android:layout_marginBottom="8dp"
+            app:customIcon="@drawable/ic_name"
+            app:customHint="Event Name" />
 
-        <com.example.rememberme.IconTextView
+        <com.example.rememberme.IconEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:rowIcon="@drawable/ic_calendar"
-            app:rowIconTint="@color/text_muted"
-            app:rowText="Add Day"
-            app:rowTextColor="@color/text_muted" />
+            android:layout_marginBottom="8dp"
+            app:customIcon="@drawable/ic_calendar"
+            app:customHint="Day of Event" />
 
-        <com.example.rememberme.IconTextView
+        <com.example.rememberme.IconEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:rowIcon="@drawable/ic_clock_3"
-            app:rowIconTint="@color/text_muted"
-            app:rowText="Add Time"
-            app:rowTextColor="@color/text_muted" />
+            android:layout_marginBottom="8dp"
+            app:customIcon="@drawable/ic_clock_3"
+            app:customHint="Time of Event" />
 
-        <com.example.rememberme.IconTextView
+        <com.example.rememberme.IconEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:paddingEnd="16dp"
-            app:rowIcon="@drawable/ic_text"
-            app:rowIconTint="@color/text_muted"
-            app:rowText="Add Description"
-            app:rowTextColor="@color/text_muted" />
+            android:layout_marginBottom="8dp"
+            app:customIcon="@drawable/ic_text"
+            app:customHint="Event Description" />
     </LinearLayout>
 
     <LinearLayout
@@ -103,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#8A8A8A"
+            android:backgroundTint="@color/event_default"
             android:text="Pick Color"
             android:textColor="@color/white"
             app:icon="@drawable/ic_paint"
@@ -116,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#11aa22"
+            android:backgroundTint="@color/confirmed"
             android:text="Confirmed"
             android:textColor="@color/white"
             app:icon="@drawable/ic_calendar_check_2"
@@ -135,6 +126,35 @@
         android:paddingEnd="16dp">
 
         <include layout="@layout/view_divider" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_alarm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/add_alarm"
+            android:text="Add Alarm"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_bell_plus"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/bg_section_box"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <include layout="@layout/view_reminder_row"/>
+            <include layout="@layout/view_reminder_row"/>
+            <include layout="@layout/view_reminder_row"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

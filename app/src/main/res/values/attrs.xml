@@ -42,4 +42,14 @@
         <attr name="rowTextColor" format="color" />
         <attr name="rowIconTint" format="color" />
     </declare-styleable>
+
+    <attr name="reminderAmount" format="string" />
+    <attr name="reminderUnit" format="string" />
+    <attr name="showRemoveButton" format="boolean" />
+
+    <declare-styleable name="ReminderRowView">
+        <attr name="reminderAmount" />
+        <attr name="reminderUnit" />
+        <attr name="showRemoveButton" />
+    </declare-styleable>
 </resources>

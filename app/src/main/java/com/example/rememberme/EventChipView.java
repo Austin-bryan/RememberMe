@@ -1,12 +1,11 @@
 package com.example.rememberme;
 
-import static androidx.core.util.TypedValueCompat.dpToPx;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -17,13 +16,12 @@ public class EventChipView extends FrameLayout {
     private TextView eventChipText;
 
     private String eventText = "Event";
-    private float eventTextSize = 8.5f;
+    private float eventTextSizePx;
     private int eventColor = Color.parseColor("#4D8DFF");
     private boolean eventConfirmed = true;
     private boolean eventDarkText = false;
-    private int eventPaddingHorizontal = 4;
-    private int eventPaddingVertical = 1;
-
+    private int eventPaddingHorizontalPx;
+    private int eventPaddingVerticalPx;
 
     public EventChipView(Context context) {
         super(context);
@@ -44,6 +42,10 @@ public class EventChipView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.widget_event_chip, this, true);
         eventChipText = findViewById(R.id.eventChipText);
 
+        eventTextSizePx = spToPx(8.5f);
+        eventPaddingHorizontalPx = dpToPx(4);
+        eventPaddingVerticalPx = dpToPx(1);
+
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.EventChipView);
 
@@ -52,9 +54,9 @@ public class EventChipView extends FrameLayout {
                 eventText = xmlText;
             }
 
-            eventTextSize = typedArray.getDimension(
+            eventTextSizePx = typedArray.getDimension(
                     R.styleable.EventChipView_eventTextSize,
-                    spToPx(8)
+                    spToPx(8.5f)
             );
 
             eventColor = typedArray.getColor(
@@ -72,12 +74,12 @@ public class EventChipView extends FrameLayout {
                     false
             );
 
-            eventPaddingHorizontal = typedArray.getDimensionPixelSize(
+            eventPaddingHorizontalPx = typedArray.getDimensionPixelSize(
                     R.styleable.EventChipView_eventPaddingHorizontal,
                     dpToPx(4)
             );
 
-            eventPaddingVertical = typedArray.getDimensionPixelSize(
+            eventPaddingVerticalPx = typedArray.getDimensionPixelSize(
                     R.styleable.EventChipView_eventPaddingVertical,
                     dpToPx(1)
             );
@@ -91,12 +93,12 @@ public class EventChipView extends FrameLayout {
     private void applyState() {
         eventChipText.setText(eventText);
         eventChipText.setTextColor(eventDarkText ? Color.BLACK : Color.WHITE);
-        eventChipText.setTextSize(pxToSp(eventTextSize));
+        eventChipText.setTextSize(TypedValue.COMPLEX_UNIT_PX, eventTextSizePx);
         eventChipText.setPadding(
-                eventPaddingHorizontal,
-                eventPaddingVertical,
-                eventPaddingHorizontal,
-                eventPaddingVertical
+                eventPaddingHorizontalPx,
+                eventPaddingVerticalPx,
+                eventPaddingHorizontalPx,
+                eventPaddingVerticalPx
         );
 
         GradientDrawable backgroundDrawable = (GradientDrawable) ContextCompat.getDrawable(
@@ -118,11 +120,6 @@ public class EventChipView extends FrameLayout {
         }
     }
 
-    private float pxToSp(float px) {
-        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
-        return px / scaledDensity;
-    }
-
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
@@ -138,6 +135,16 @@ public class EventChipView extends FrameLayout {
         applyState();
     }
 
+    public void setEventTextSizeSp(float eventTextSizeSp) {
+        this.eventTextSizePx = spToPx(eventTextSizeSp);
+        applyState();
+    }
+
+    public void setEventTextSizePx(float eventTextSizePx) {
+        this.eventTextSizePx = eventTextSizePx;
+        applyState();
+    }
+
     public void setEventColor(int eventColor) {
         this.eventColor = eventColor;
         applyState();
@@ -150,6 +157,22 @@ public class EventChipView extends FrameLayout {
 
     public void setDarkText(boolean darkText) {
         this.eventDarkText = darkText;
+        applyState();
+    }
+
+    public void setEventPaddingHorizontalPx(int eventPaddingHorizontalPx) {
+        this.eventPaddingHorizontalPx = eventPaddingHorizontalPx;
+        applyState();
+    }
+
+    public void setEventPaddingVerticalPx(int eventPaddingVerticalPx) {
+        this.eventPaddingVerticalPx = eventPaddingVerticalPx;
+        applyState();
+    }
+
+    public void setEventPaddingPx(int horizontalPx, int verticalPx) {
+        this.eventPaddingHorizontalPx = horizontalPx;
+        this.eventPaddingVerticalPx = verticalPx;
         applyState();
     }
 }

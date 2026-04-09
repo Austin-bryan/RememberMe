@@ -48,11 +48,11 @@
         <com.example.rememberme.TimedEventView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:eventTextSize="8sp"
-            app:eventPaddingHorizontal="3dp"
-            app:eventPaddingVertical="0dp"
             app:timeText="9 AM"
             app:eventText="Church"
+            app:eventTextSize="12sp"
+            app:eventPaddingHorizontal="8dp"
+            app:eventPaddingVertical="4dp"
             app:eventColor="@color/event_white"
             app:eventConfirmed="true"
             app:eventDarkText="true" />
@@ -61,9 +61,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
             app:timeText="1 PM"
             app:eventText="Movie Night"
+            app:eventTextSize="12sp"
+            app:eventPaddingHorizontal="8dp"
+            app:eventPaddingVertical="4dp"
             app:eventColor="@color/event_blue"
             app:eventConfirmed="false"
             app:eventDarkText="false" />
@@ -72,11 +74,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:eventTextSize="8sp"
-            app:eventPaddingHorizontal="3dp"
-            app:eventPaddingVertical="0dp"
             app:timeText="8 PM"
             app:eventText="Sleep"
+            app:eventTextSize="12sp"
+            app:eventPaddingHorizontal="8dp"
+            app:eventPaddingVertical="4dp"
             app:eventColor="@color/event_orange"
             app:eventConfirmed="true"
             app:eventDarkText="false" />

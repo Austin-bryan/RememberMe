@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+get_code.py
+combined_source.txt

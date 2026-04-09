@@ -1,11 +1,10 @@
 package com.example.rememberme;
 
-import static androidx.core.util.TypedValueCompat.dpToPx;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,9 +15,12 @@ public class TimedEventView extends LinearLayout {
 
     private String timeText = "9 AM";
     private String eventText = "Event";
+    private float eventTextSizePx;
     private int eventColor = Color.parseColor("#4D8DFF");
     private boolean eventConfirmed = true;
     private boolean eventDarkText = false;
+    private int eventPaddingHorizontalPx;
+    private int eventPaddingVerticalPx;
 
     public TimedEventView(Context context) {
         super(context);
@@ -42,6 +44,10 @@ public class TimedEventView extends LinearLayout {
         timeTextView = findViewById(R.id.timeText);
         eventChipView = findViewById(R.id.eventChip);
 
+        eventTextSizePx = spToPx(12f);
+        eventPaddingHorizontalPx = dpToPx(8);
+        eventPaddingVerticalPx = dpToPx(4);
+
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TimedEventView);
 
@@ -54,6 +60,11 @@ public class TimedEventView extends LinearLayout {
             if (xmlEventText != null) {
                 eventText = xmlEventText;
             }
+
+            eventTextSizePx = typedArray.getDimension(
+                    R.styleable.TimedEventView_eventTextSize,
+                    spToPx(12f)
+            );
 
             eventColor = typedArray.getColor(
                     R.styleable.TimedEventView_eventColor,
@@ -70,6 +81,16 @@ public class TimedEventView extends LinearLayout {
                     false
             );
 
+            eventPaddingHorizontalPx = typedArray.getDimensionPixelSize(
+                    R.styleable.TimedEventView_eventPaddingHorizontal,
+                    dpToPx(8)
+            );
+
+            eventPaddingVerticalPx = typedArray.getDimensionPixelSize(
+                    R.styleable.TimedEventView_eventPaddingVertical,
+                    dpToPx(4)
+            );
+
             typedArray.recycle();
         }
 
@@ -79,9 +100,21 @@ public class TimedEventView extends LinearLayout {
     private void applyState() {
         timeTextView.setText(timeText);
         eventChipView.setEventText(eventText);
+        eventChipView.setEventTextSizePx(eventTextSizePx);
         eventChipView.setEventColor(eventColor);
         eventChipView.setConfirmed(eventConfirmed);
         eventChipView.setDarkText(eventDarkText);
+        eventChipView.setEventPaddingPx(eventPaddingHorizontalPx, eventPaddingVerticalPx);
+    }
+
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
+    }
+
+    private float spToPx(float sp) {
+        float scaledDensity = getResources().getDisplayMetrics().scaledDensity;
+        return sp * scaledDensity;
     }
 
     public void setTimeText(String timeText) {
@@ -91,6 +124,11 @@ public class TimedEventView extends LinearLayout {
 
     public void setEventText(String eventText) {
         this.eventText = eventText;
+        applyState();
+    }
+
+    public void setEventTextSizeSp(float eventTextSizeSp) {
+        this.eventTextSizePx = spToPx(eventTextSizeSp);
         applyState();
     }
 
@@ -106,6 +144,12 @@ public class TimedEventView extends LinearLayout {
 
     public void setEventDarkText(boolean eventDarkText) {
         this.eventDarkText = eventDarkText;
+        applyState();
+    }
+
+    public void setEventPaddingPx(int horizontalPx, int verticalPx) {
+        this.eventPaddingHorizontalPx = horizontalPx;
+        this.eventPaddingVerticalPx = verticalPx;
         applyState();
     }
 }

@@ -16,18 +16,17 @@
     <color name="outline_input">#000</color>
     <color name="outline_day">#252525</color>
 
-    <color name="accent_blue">#3355FF</color>
-
     <color name="text_primary">#fff</color>
     <color name="text_muted">#aaa</color>
 
     <color name="event_pink">#FF5FA2</color>
-
     <color name="event_orange">#FFA43C</color>
     <color name="event_yellow">#F4D35E</color>
     <color name="event_green">#6BCB77</color>
     <color name="event_cyan">#52D1DC</color>
     <color name="event_blue">#4D8DFF</color>
-
     <color name="event_white">#F4F4F4</color>
+
+    <color name="accent_blue">#3355FF</color>
+    <color name="divider">#404040</color>
 </resources>

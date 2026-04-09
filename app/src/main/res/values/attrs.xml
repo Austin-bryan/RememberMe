@@ -6,21 +6,40 @@
         <attr name="isPassword" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="EventChipView">
-        <attr name="eventText" format="string" />
-        <attr name="eventTextSize" format="dimension" />
-        <attr name="eventColor" format="color" />
-        <attr name="eventConfirmed" format="boolean" />
-        <attr name="eventDarkText" format="boolean" />
-        <attr name="eventPaddingHorizontal" format="dimension" />
-        <attr name="eventPaddingVertical" format="dimension" />
-    </declare-styleable>
+    <attr name="eventText" format="string" />
+    <attr name="eventTextSize" format="dimension" />
+    <attr name="eventColor" format="color" />
+    <attr name="eventConfirmed" format="boolean" />
+    <attr name="eventDarkText" format="boolean" />
+    <attr name="eventPaddingHorizontal" format="dimension" />
+    <attr name="eventPaddingVertical" format="dimension" />
+    <attr name="timeText" format="string" />
 
-    <declare-styleable name="TimedEventView">
-        <attr name="timeText" format="string" />
+    <declare-styleable name="EventChipView">
         <attr name="eventText" />
+        <attr name="eventTextSize" />
         <attr name="eventColor" />
         <attr name="eventConfirmed" />
         <attr name="eventDarkText" />
+        <attr name="eventPaddingHorizontal" />
+        <attr name="eventPaddingVertical" />
+    </declare-styleable>
+
+    <declare-styleable name="TimedEventView">
+        <attr name="timeText" />
+        <attr name="eventText" />
+        <attr name="eventTextSize" />
+        <attr name="eventColor" />
+        <attr name="eventConfirmed" />
+        <attr name="eventDarkText" />
+        <attr name="eventPaddingHorizontal" />
+        <attr name="eventPaddingVertical" />
+    </declare-styleable>
+
+    <declare-styleable name="IconTextView">
+        <attr name="rowIcon" format="reference" />
+        <attr name="rowText" format="string" />
+        <attr name="rowTextColor" format="color" />
+        <attr name="rowIconTint" format="color" />
     </declare-styleable>
 </resources>

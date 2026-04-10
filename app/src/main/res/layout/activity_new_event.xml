@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_header"
+        android:background="@color/event_default"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="16dp"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="New Event"
+            android:text="Event Editor"
             android:textColor="@color/text_primary"
             android:textSize="22sp"
             android:textStyle="italic" />
@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/event_default"
+            android:backgroundTint="@color/bg_input"
             android:text="Pick Color"
             android:textColor="@color/white"
             app:icon="@drawable/ic_paint"
@@ -103,17 +103,31 @@
             app:iconTint="@color/white" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/repeatButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/bg_input"
+            android:text="Does not repeat"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_repeat"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/confirmedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/confirmed"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/bg_input"
             android:text="Confirmed"
             android:textColor="@color/white"
             app:icon="@drawable/ic_calendar_check_2"
             app:iconGravity="textStart"
             app:iconPadding="8dp"
             app:iconTint="@color/white" />
+
 
     </LinearLayout>
 
@@ -132,9 +146,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/add_alarm"
+            android:backgroundTint="@color/bg_input"
             android:text="Add Alarm"
             android:textColor="@color/white"
+
             app:icon="@drawable/ic_bell_plus"
             app:iconGravity="textStart"
             app:iconPadding="8dp"
@@ -157,10 +172,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-        <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
 </LinearLayout>

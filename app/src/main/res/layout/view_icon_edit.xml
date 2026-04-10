@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:padding="12dp"
-    android:background="@drawable/input_capsule">
+    android:background="@drawable/bg_input_text">
 
     <include
         layout="@layout/view_icon"

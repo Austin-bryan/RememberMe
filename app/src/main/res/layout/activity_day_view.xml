@@ -17,13 +17,17 @@
         android:paddingEnd="16dp"
         android:paddingBottom="14dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/backButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_arrow_left"
             android:contentDescription="Back"
-            android:tint="@color/text_primary" />
+            android:src="@drawable/ic_arrow_left"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="@color/text_primary" />
 
         <TextView
             android:id="@+id/dayHeaderText"
@@ -86,6 +90,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/newEventButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -4,32 +4,33 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class IconEditText extends LinearLayout {
+    private EditText inputField;
+
     public IconEditText(Context context, AttributeSet attributes) {
         super(context, attributes);
 
         setOrientation(HORIZONTAL);
-        setGravity(android.view.Gravity.CENTER_VERTICAL);
+        setGravity(Gravity.CENTER_VERTICAL);
 
         inflate(context, R.layout.view_icon_edit, this);
 
         ImageView iconView = findViewById(R.id.inner_icon);
-        EditText inputField = findViewById(R.id.widget_input);
+        inputField = findViewById(R.id.widget_input);
 
         TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.IconEditText);
 
         int iconRes = typedArray.getResourceId(R.styleable.IconEditText_customIcon, 0);
-
         if (iconRes != 0) {
             iconView.setImageResource(iconRes);
         }
 
         String hint = typedArray.getString(R.styleable.IconEditText_customHint);
-
         if (hint != null) {
             inputField.setHint(hint);
         }
@@ -39,5 +40,17 @@ public class IconEditText extends LinearLayout {
         }
 
         typedArray.recycle();
+    }
+
+    public String getText() {
+        return inputField.getText().toString().trim();
+    }
+
+    public void setText(String value) {
+        inputField.setText(value);
+    }
+
+    public EditText getEditText() {
+        return inputField;
     }
 }

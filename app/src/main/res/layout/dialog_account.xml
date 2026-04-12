@@ -36,6 +36,7 @@
         android:orientation="vertical">
 
         <com.example.rememberme.IconEditText
+            android:id="@+id/createUsernameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -43,6 +44,7 @@
             app:customHint="Username" />
 
         <com.example.rememberme.IconEditText
+            android:id="@+id/createPasswordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -51,6 +53,7 @@
             app:isPassword="true" />
 
         <com.example.rememberme.IconEditText
+            android:id="@+id/createConfirmPasswordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -59,12 +62,13 @@
             app:isPassword="true" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/createAccountButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Create Account"
             android:backgroundTint="@color/accent_blue"
             android:layout_marginTop="20dp"
-            app:icon="@drawable/ic_log_in"
+            app:icon="@drawable/ic_user_plus"
             app:iconGravity="textStart"
             app:iconPadding="8dp"
             app:iconTint="@color/white" />

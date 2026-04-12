@@ -12,6 +12,7 @@
     <color name="bg_input">#151515</color>
     <color name="bg_header">#404040</color>
     <color name="bg_day">#151515</color>
+    <color name="bg_day_next">#202020</color>
 
     <color name="outline_input">#000</color>
     <color name="outline_day">#252525</color>

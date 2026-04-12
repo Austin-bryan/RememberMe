@@ -35,12 +35,26 @@
         android:layout_marginBottom="36dp" />
 
     <com.example.rememberme.IconEditText
+        android:id="@+id/usernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:customIcon="@drawable/ic_user"
-        app:customHint="Username" />
+        app:customHint="Username" >
+
+    </com.example.rememberme.IconEditText>
+
+    <TextView
+        android:id="@+id/incorrectUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textColor="#f22"
+        android:visibility="gone"
+        android:text="Account not found" />
 
     <com.example.rememberme.IconEditText
+        android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -48,7 +62,18 @@
         app:customHint="Password"
         app:isPassword="true" />
 
+    <TextView
+        android:id="@+id/incorrectPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textColor="#f22"
+        android:visibility="gone"
+        android:text="Incorrect password" />
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -64,6 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
+        android:id="@+id/signUpPrompt"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
         <TextView

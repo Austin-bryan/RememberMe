@@ -29,8 +29,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-
-
     <RadioGroup
         android:id="@+id/repeatRadioGroup"
         android:layout_width="match_parent"

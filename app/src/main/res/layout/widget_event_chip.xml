@@ -8,5 +8,4 @@
     android:scrollHorizontally="false"
     android:text="Event"
     android:textColor="@android:color/white"
-    android:textSize="8.5sp"
-    android:textStyle="bold" />
+    android:textSize="8.5sp"/>

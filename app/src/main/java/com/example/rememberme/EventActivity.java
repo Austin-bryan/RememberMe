@@ -49,7 +49,11 @@ public class EventActivity extends AppCompatActivity {
             intent.putExtra("selectedDate", selectedDate);
             intent.putExtra("eventId", eventId);
             intent.putExtra("title", "Update Event");
-            
+
+            intent.putExtra("eventName", eventTitle);
+            intent.putExtra("eventTime", eventTime);
+            intent.putExtra("eventDescription", eventDescription);
+
 
             startActivity(intent);
         });

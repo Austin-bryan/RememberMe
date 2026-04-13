@@ -61,12 +61,15 @@ public class NewEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        databaseHelper = new DatabaseHelper(this);
+
         titleStr = getIntent().getStringExtra("title");
         eventId = getIntent().getIntExtra("eventId", -1);
-
         currentUsername = getIntent().getStringExtra("username");
-        databaseHelper = new DatabaseHelper(this);
         selectedDate = getIntent().getStringExtra("selectedDate");
+        eventName = getIntent().getStringExtra("eventName");
+        eventTime = getIntent().getStringExtra("eventTime");
+        eventDescription = getIntent().getStringExtra("eventDescription");
 
         setContentView(R.layout.activity_new_event);
 
@@ -76,11 +79,21 @@ public class NewEventActivity extends AppCompatActivity {
         }
 
         eventNameInput = findViewById(R.id.eventNameInput);
-        eventDateInput = findViewById(R.id.eventDateInput);
+        if (eventName != null && !eventName.isEmpty()) {
+            eventNameInput.setText(eventName);
+        }
+
         eventTimeInput = findViewById(R.id.eventTimeInput);
+        if (eventTime != null && !eventTime.isEmpty()) {
+            eventTimeInput.setText(eventTime);
+        }
+
         eventDescriptionInput = findViewById(R.id.eventDescriptionInput);
+        if (eventDescription != null && !eventDescription.isEmpty()) {
+            eventDescriptionInput.setText(eventDescription);
+        }
 
-
+        eventDateInput = findViewById(R.id.eventDateInput);
         if (selectedDate != null && !selectedDate.isEmpty()) {
             eventDateInput.setText(selectedDate);
             eventDateInput.getEditText().setEnabled(false);
@@ -94,6 +107,16 @@ public class NewEventActivity extends AppCompatActivity {
 
         MaterialButton saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(view -> saveOrUpdateEvent());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reload();
+    }
+
+    private void reload() {
+
     }
 
     private void saveOrUpdateEvent() {

@@ -64,12 +64,18 @@ public class DayViewActivity extends AppCompatActivity {
 
         dayEventsContainer.removeAllViews();
 
-        if (currentUsername == null || currentUsername.isEmpty() || selectedDate == null || selectedDate.isEmpty()) {
+        if (currentUsername == null
+            || currentUsername.isEmpty()
+            || selectedDate == null
+            || selectedDate.isEmpty()
+        ) {
             return;
         }
 
-        var events =
-                databaseHelper.getEventsForUserAndDate(currentUsername, selectedDate);
+        var events = databaseHelper.getEventsForUserAndDate(
+            currentUsername,
+            selectedDate
+        );
 
         for (DatabaseHelper.EventRecord eventRecord : events) {
             TimedEventView timedEventView = new TimedEventView(this);
@@ -84,8 +90,8 @@ public class DayViewActivity extends AppCompatActivity {
 
             var layoutParams =
                 new android.widget.LinearLayout.LayoutParams(
-                        android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+                    android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                    android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
                 );
 
             layoutParams.topMargin = dpToPx(8);

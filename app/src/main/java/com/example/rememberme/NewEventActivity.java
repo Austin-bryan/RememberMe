@@ -23,6 +23,7 @@ public class NewEventActivity extends AppCompatActivity {
 
     private String titleStr;
     private String currentUsername;
+    private String selectedDate;
     private DatabaseHelper databaseHelper;
 
     private int eventId = -1;
@@ -59,6 +60,7 @@ public class NewEventActivity extends AppCompatActivity {
 
         currentUsername = getIntent().getStringExtra("username");
         databaseHelper = new DatabaseHelper(this);
+        selectedDate = getIntent().getStringExtra("selectedDate");
 
         setContentView(R.layout.activity_new_event);
 
@@ -71,6 +73,12 @@ public class NewEventActivity extends AppCompatActivity {
         eventDateInput = findViewById(R.id.eventDateInput);
         eventTimeInput = findViewById(R.id.eventTimeInput);
         eventDescriptionInput = findViewById(R.id.eventDescriptionInput);
+
+
+        if (selectedDate != null && !selectedDate.isEmpty()) {
+            eventDateInput.setText(selectedDate);
+            eventDateInput.getEditText().setEnabled(false);
+        }
 
         AppCompatImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> finish());
@@ -94,7 +102,10 @@ public class NewEventActivity extends AppCompatActivity {
         }
 
         String eventName = eventNameInput.getText();
-        String eventDate = eventDateInput.getText();
+        String eventDate = selectedDate != null && !selectedDate.isEmpty()
+            ? selectedDate
+            : eventDateInput.getText();
+
         String eventTime = eventTimeInput.getText();
         String eventDescription = eventDescriptionInput.getText();
 

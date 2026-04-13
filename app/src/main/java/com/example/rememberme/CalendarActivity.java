@@ -55,7 +55,7 @@ public class CalendarActivity extends AppCompatActivity {
                 );
 
                 String dayStr = String.valueOf((dayIndex % 31) + 1);
-                if (dayStr.length() < 10) {
+                if (dayStr.length() < 2) {
                     dayStr = "0" + dayStr;
                 }
 

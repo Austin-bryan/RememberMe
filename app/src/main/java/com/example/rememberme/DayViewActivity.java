@@ -13,6 +13,8 @@ import com.google.android.material.button.MaterialButton;
 public class DayViewActivity extends AppCompatActivity {
     private String selectedDate;
     private String currentUsername;
+    private android.widget.LinearLayout dayEventsContainer;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class DayViewActivity extends AppCompatActivity {
 
         selectedDate = getIntent().getStringExtra("selectedDate");
         currentUsername = getIntent().getStringExtra("currentUsername");
+        databaseHelper = new DatabaseHelper(this);
+        dayEventsContainer = findViewById(R.id.dayEventsContainer);
 
         TextView dayHeaderText = findViewById(R.id.dayHeaderText);
 
@@ -36,6 +40,7 @@ public class DayViewActivity extends AppCompatActivity {
 
             intent.putExtra("username", currentUsername);
             intent.putExtra("title", "Create New Event");
+            intent.putExtra("selectedDate", selectedDate);
 
             startActivity(intent);
         });
@@ -43,6 +48,65 @@ public class DayViewActivity extends AppCompatActivity {
         if (selectedDate != null) {
             dayHeaderText.setText(formatDateForHeader(selectedDate));
         }
+    }
+
+    // auto update even when returning
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadEventsForSelectedDay();
+    }
+
+    private void reloadEventsForSelectedDay() {
+        if (dayEventsContainer == null) {
+            return;
+        }
+
+        dayEventsContainer.removeAllViews();
+
+        if (currentUsername == null || currentUsername.isEmpty() || selectedDate == null || selectedDate.isEmpty()) {
+            return;
+        }
+
+        var events =
+                databaseHelper.getEventsForUserAndDate(currentUsername, selectedDate);
+
+        for (DatabaseHelper.EventRecord eventRecord : events) {
+            TimedEventView timedEventView = new TimedEventView(this);
+
+            timedEventView.setTimeText(eventRecord.time);
+            timedEventView.setEventText(eventRecord.name);
+            timedEventView.setEventTextSizeSp(12f);
+            timedEventView.setEventPaddingPx(dpToPx(8), dpToPx(4));
+            timedEventView.setEventColor(getColor(R.color.event_default));
+            timedEventView.setEventConfirmed(true);
+            timedEventView.setEventDarkText(false);
+
+            var layoutParams =
+                new android.widget.LinearLayout.LayoutParams(
+                        android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                        android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+            layoutParams.topMargin = dpToPx(8);
+            timedEventView.setLayoutParams(layoutParams);
+
+            timedEventView.setOnClickListener(view -> {
+                Intent intent = new android.content.Intent(DayViewActivity.this, EventActivity.class);
+                intent.putExtra("username", currentUsername);
+                intent.putExtra("selectedDate", selectedDate);
+                intent.putExtra("eventId", eventRecord.id);
+                intent.putExtra("title", eventRecord.name);
+                startActivity(intent);
+            });
+
+            dayEventsContainer.addView(timedEventView);
+        }
+    }
+
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 
     private String formatDateForHeader(String selectedDate) {

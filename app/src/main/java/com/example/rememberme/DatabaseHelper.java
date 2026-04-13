@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "remember_me.db";
     public static final String COLUMN_SMS_PERMISSION = "sms_permission";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
 
     public static final String TABLE_USERS = "users";
     public static final String COLUMN_USER_ID = "id";
@@ -58,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         onCreate(database);
     }
@@ -183,5 +184,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         return rowsUpdated > 0;
+    }
+
+    public java.util.List<EventRecord> getEventsForUserAndDate(
+        String username,
+        String date
+    ) {
+        java.util.List<EventRecord> events = new java.util.ArrayList<>();
+        SQLiteDatabase database = getReadableDatabase();
+
+        Cursor cursor = database.query(
+            TABLE_EVENTS,
+            new String[]{
+                COLUMN_EVENT_ID,
+                COLUMN_EVENT_USERNAME,
+                COLUMN_EVENT_NAME,
+                COLUMN_EVENT_DATE,
+                COLUMN_EVENT_TIME,
+                COLUMN_EVENT_DESCRIPTION
+            },
+            COLUMN_EVENT_USERNAME + " = ? AND " + COLUMN_EVENT_DATE + " = ?",
+            new String[]{username, date},
+            null,
+            null,
+            COLUMN_EVENT_TIME + " ASC"
+        );
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String eventUsername = cursor.getString(1);
+            String name = cursor.getString(2);
+            String eventDate = cursor.getString(3);
+            String time = cursor.getString(4);
+            String description = cursor.getString(5);
+
+            events.add(new EventRecord(id, eventUsername, name, eventDate, time, description));
+        }
+
+        cursor.close();
+
+        return events;
+    }
+
+    public static class EventRecord {
+        public final int id;
+        public final String username;
+        public final String name;
+        public final String date;
+        public final String time;
+        public final String description;
+
+        public EventRecord(
+            int id,
+            String username,
+            String name,
+            String date,
+            String time,
+            String description
+        ) {
+            this.id = id;
+            this.username = username;
+            this.name = name;
+            this.date = date;
+            this.time = time;
+            this.description = description;
+        }
     }
 }

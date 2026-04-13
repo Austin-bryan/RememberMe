@@ -55,42 +55,69 @@ public class LoginActivity extends AppCompatActivity {
         MaterialButton createAccountButton = dialogView.findViewById(R.id.createAccountButton);
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setView(dialogView)
-                .create();
+            .setView(dialogView)
+            .create();
 
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
 
+        // Setup create account button
         createAccountButton.setOnClickListener(v -> {
             String username = createUsernameInput.getText();
             String password = createPasswordInput.getText();
             String confirmPassword = createConfirmPasswordInput.getText();
 
+            // Require all fields
             if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, "Fill in all fields.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this,
+                    "Fill in all fields.",
+                    Toast.LENGTH_SHORT
+                ).show();
+
                 return;
             }
 
+            // Require password matching
             if (!password.equals(confirmPassword)) {
-                Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this,
+                    "Passwords do not match.",
+                    Toast.LENGTH_SHORT
+                ).show();
+
                 return;
             }
 
             if (databaseHelper.userExists(username)) {
-                Toast.makeText(this, "That username is already taken.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this,
+                    "That username is already taken.",
+                    Toast.LENGTH_SHORT
+                ).show();
+
                 return;
             }
 
             boolean created = databaseHelper.createUser(username, password);
 
             if (!created) {
-                Toast.makeText(this, "Unable to create account.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    this,
+                    "Unable to create account.",
+                    Toast.LENGTH_SHORT
+                ).show();
                 return;
             }
 
-            Toast.makeText(this, "Account created successfully.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                this,
+                "Account created successfully.",
+                Toast.LENGTH_SHORT
+            ).show();
 
+            // For convince, setting the fields for them for ready to login
             usernameInput.setText(username);
             passwordInput.setText(password);
 
@@ -100,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    // Try to login, checking username and password
     private void attemptLogin() {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
@@ -107,11 +135,18 @@ public class LoginActivity extends AppCompatActivity {
         incorrectUsername.setVisibility(View.GONE);
         incorrectPassword.setVisibility(View.GONE);
 
+        // Force both username and password
         if (username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Enter both username and password.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                this,
+                "Enter both username and password.",
+                Toast.LENGTH_SHORT
+            ).show();
             return;
         }
 
+        // Show incorrect flags
+        
         if (!databaseHelper.userExists(username)) {
             incorrectUsername.setVisibility(View.VISIBLE);
             return;

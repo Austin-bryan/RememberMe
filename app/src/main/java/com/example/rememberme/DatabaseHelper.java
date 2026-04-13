@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+// Holds SQL code and is the operator for the CRUD operations for this database
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "remember_me.db";
     public static final String COLUMN_SMS_PERMISSION = "sms_permission";

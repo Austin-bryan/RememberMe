@@ -49,8 +49,8 @@ public class IconTextView extends LinearLayout {
 
             if (typedArray.hasValue(R.styleable.IconTextView_rowTextColor)) {
                 int textColor = typedArray.getColor(
-                        R.styleable.IconTextView_rowTextColor,
-                        textView.getCurrentTextColor()
+                    R.styleable.IconTextView_rowTextColor,
+                    textView.getCurrentTextColor()
                 );
                 textView.setTextColor(textColor);
             }

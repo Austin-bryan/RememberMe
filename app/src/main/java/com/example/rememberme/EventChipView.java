@@ -55,33 +55,33 @@ public class EventChipView extends FrameLayout {
             }
 
             eventTextSizePx = typedArray.getDimension(
-                    R.styleable.EventChipView_eventTextSize,
-                    spToPx(8.5f)
+                R.styleable.EventChipView_eventTextSize,
+                spToPx(8.5f)
             );
 
             eventColor = typedArray.getColor(
-                    R.styleable.EventChipView_eventColor,
-                    Color.parseColor("#4D8DFF")
+                R.styleable.EventChipView_eventColor,
+                Color.parseColor("#4D8DFF")
             );
 
             eventConfirmed = typedArray.getBoolean(
-                    R.styleable.EventChipView_eventConfirmed,
-                    true
+                R.styleable.EventChipView_eventConfirmed,
+                true
             );
 
             eventDarkText = typedArray.getBoolean(
-                    R.styleable.EventChipView_eventDarkText,
-                    false
+                R.styleable.EventChipView_eventDarkText,
+                false
             );
 
             eventPaddingHorizontalPx = typedArray.getDimensionPixelSize(
-                    R.styleable.EventChipView_eventPaddingHorizontal,
-                    dpToPx(4)
+                R.styleable.EventChipView_eventPaddingHorizontal,
+                dpToPx(4)
             );
 
             eventPaddingVerticalPx = typedArray.getDimensionPixelSize(
-                    R.styleable.EventChipView_eventPaddingVertical,
-                    dpToPx(1)
+                R.styleable.EventChipView_eventPaddingVertical,
+                dpToPx(1)
             );
 
             typedArray.recycle();
@@ -95,15 +95,15 @@ public class EventChipView extends FrameLayout {
         eventChipText.setTextColor(eventDarkText ? Color.BLACK : Color.WHITE);
         eventChipText.setTextSize(TypedValue.COMPLEX_UNIT_PX, eventTextSizePx);
         eventChipText.setPadding(
-                eventPaddingHorizontalPx,
-                eventPaddingVerticalPx,
-                eventPaddingHorizontalPx,
-                eventPaddingVerticalPx
+            eventPaddingHorizontalPx,
+            eventPaddingVerticalPx,
+            eventPaddingHorizontalPx,
+            eventPaddingVerticalPx
         );
 
         GradientDrawable backgroundDrawable = (GradientDrawable) ContextCompat.getDrawable(
-                getContext(),
-                eventConfirmed ? R.drawable.bg_event_confirmed : R.drawable.bg_event_unconfirmed
+            getContext(),
+            eventConfirmed ? R.drawable.bg_event_confirmed : R.drawable.bg_event_unconfirmed
         );
 
         if (backgroundDrawable != null) {

@@ -55,6 +55,8 @@ public class NewEventActivity extends AppCompatActivity {
             }
         });
 
+    // This activity is used for either editing existing events or creating new ones
+    // if onCreate is set with blanks, its create mode, if values are provided, its edit event mode
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,7 +188,7 @@ public class NewEventActivity extends AppCompatActivity {
         finish();
     }
 
-
+    // While permissions are app-wide, this app won't send permissions even at the user-level
     private void handleAddAlarm() {
         if (currentUsername == null || currentUsername.isEmpty()) {
             Toast.makeText(
@@ -265,7 +267,6 @@ public class NewEventActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    // test
     private void sendTestSms() {
         try {
             SmsManager smsManager = SmsManager.getDefault();

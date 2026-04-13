@@ -50,13 +50,14 @@ public class DayViewActivity extends AppCompatActivity {
         }
     }
 
-    // auto update even when returning
+    // Auto update even when returning
     @Override
     protected void onResume() {
         super.onResume();
         reloadEventsForSelectedDay();
     }
 
+    // Refresh values in case a change was made to events
     private void reloadEventsForSelectedDay() {
         if (dayEventsContainer == null) {
             return;
@@ -77,6 +78,8 @@ public class DayViewActivity extends AppCompatActivity {
             selectedDate
         );
 
+        // Recreate all events as recorded from database
+        // This is done in case a new one is made or changed
         for (DatabaseHelper.EventRecord eventRecord : events) {
             TimedEventView timedEventView = new TimedEventView(this);
 

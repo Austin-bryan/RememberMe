@@ -33,6 +33,8 @@ public class CalendarActivity extends AppCompatActivity {
         LinearLayout calendarGrid = findViewById(R.id.calendarGrid);
         int dayIndex = 0;
 
+        // Populate calendar week by week
+        // Days are hard coded march 1 to april 4th
         for (int rowIndex = 0; rowIndex < calendarGrid.getChildCount(); rowIndex++) {
             View rowView = calendarGrid.getChildAt(rowIndex);
 
@@ -42,6 +44,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             LinearLayout weekRow = (LinearLayout) rowView;
 
+            // Populate week day by day
             for (int columnIndex = 0; columnIndex < weekRow.getChildCount(); columnIndex++) {
                 View dayCellView = weekRow.getChildAt(columnIndex);
                 TextView dayNumberText = dayCellView.findViewById(R.id.dayNumberText);
@@ -54,26 +57,29 @@ public class CalendarActivity extends AppCompatActivity {
                     dayIndex < days.size() ? days.get(dayIndex) : ""
                 );
 
+                // Add leading 0s if needed
                 String dayStr = String.valueOf((dayIndex % 31) + 1);
                 if (dayStr.length() < 2) {
                     dayStr = "0" + dayStr;
                 }
 
-                // if is april
+                // Month is april
                 if (dayIndex >= 31) {
                     dayCellView.setTag("2026-04-" + dayStr);
                     dayCellView.setBackgroundResource(R.drawable.bg_calendar_day_next);
-                // else is march
+                // Month is march
                 } else {
                     dayCellView.setTag("2026-03-" + dayStr);
                 }
 
+                // Setup intent for each day
                 dayCellView.setOnClickListener(view -> {
                     String selectedDate = (String) view.getTag();
 
                     Intent intent = new Intent(CalendarActivity.this, DayViewActivity.class);
                     intent.putExtra("selectedDate", selectedDate);
                     intent.putExtra("currentUsername", currentUsername);
+
                     startActivity(intent);
                 });
 

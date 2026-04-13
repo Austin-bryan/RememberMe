@@ -125,6 +125,7 @@ public class EventActivity extends AppCompatActivity {
         reloadEvent();
     }
 
+    // Reload when event is edited and needs a refresh
     private void reloadEvent() {
         if (eventId == -1) {
             return;

@@ -3,9 +3,12 @@ package com.example.rememberme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+
+import com.google.android.material.button.MaterialButton;
 
 public class EventActivity extends AppCompatActivity {
     private String currentUsername;
@@ -68,6 +71,9 @@ public class EventActivity extends AppCompatActivity {
 
         String formattedDateTime = formatDateForEventRow(selectedDate, eventTime);
         eventDateTimeRow.setRowText(formattedDateTime);
+
+        MaterialButton deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(view -> deleteCurrentEvent());
 
         if (eventDescription != null && !eventDescription.isEmpty()) {
             eventDescriptionRow.setRowText(eventDescription);
@@ -146,5 +152,37 @@ public class EventActivity extends AppCompatActivity {
         } else {
             eventDescriptionRow.setRowText("No description");
         }
+    }
+
+    private void deleteCurrentEvent() {
+        if (eventId == -1) {
+            Toast.makeText(
+                this,
+                "No event to delete.",
+                Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        boolean deleted = databaseHelper.deleteEvent(eventId);
+
+        if (!deleted) {
+            Toast.makeText(
+                this,
+                "Unable to delete event.",
+                Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        Toast.makeText(
+            this,
+            "Event deleted.",
+            Toast.LENGTH_SHORT
+        ).show();
+
+        finish();
     }
 }

@@ -26,13 +26,11 @@ public class NewEventActivity extends AppCompatActivity {
     private String selectedDate;
     private DatabaseHelper databaseHelper;
 
-    // intent fields
     private int eventId = -1;
 
     private String eventName = "";
     private String eventTime = "";
     private String eventDescription = "";
-
 
     private IconEditText eventNameInput;
     private IconEditText eventDateInput;

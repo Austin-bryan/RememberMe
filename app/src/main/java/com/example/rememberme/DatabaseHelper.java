@@ -263,6 +263,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return eventRecord;
     }
 
+    public boolean deleteEvent(int eventId) {
+        SQLiteDatabase database = getWritableDatabase();
+
+        int rowsDeleted = database.delete(
+                TABLE_EVENTS,
+                COLUMN_EVENT_ID + " = ?",
+                new String[]{String.valueOf(eventId)}
+        );
+
+        return rowsDeleted > 0;
+    }
+
     public static class EventRecord {
         public final int id;
         public final String username;

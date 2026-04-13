@@ -109,16 +109,6 @@ public class NewEventActivity extends AppCompatActivity {
         saveButton.setOnClickListener(view -> saveOrUpdateEvent());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        reload();
-    }
-
-    private void reload() {
-
-    }
-
     private void saveOrUpdateEvent() {
         if (currentUsername == null || currentUsername.isEmpty()) {
             Toast.makeText(

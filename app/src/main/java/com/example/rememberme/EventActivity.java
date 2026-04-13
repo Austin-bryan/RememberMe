@@ -15,6 +15,12 @@ public class EventActivity extends AppCompatActivity {
     private String eventTime;
     private String eventDescription;
 
+    private DatabaseHelper databaseHelper;
+
+    private TextView eventTitleText;
+    private IconTextView eventDateTimeRow;
+    private IconTextView eventDescriptionRow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +33,14 @@ public class EventActivity extends AppCompatActivity {
         eventTime = getIntent().getStringExtra("eventTime");
         eventDescription = getIntent().getStringExtra("eventDescription");
 
+        databaseHelper = new DatabaseHelper(this);
+
+        eventTitleText = findViewById(R.id.eventTitleText);
+        eventDateTimeRow = findViewById(R.id.eventDateTimeRow);
+        eventDescriptionRow = findViewById(R.id.eventDescriptionRow);
+
         AppCompatImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> finish());
-
-        TextView eventTitleText = findViewById(R.id.eventTitleText);
-        IconTextView eventDateTimeRow = findViewById(R.id.eventDateTimeRow);
-        IconTextView eventDescriptionRow = findViewById(R.id.eventDescriptionRow);
 
         if (eventTitle != null && !eventTitle.isEmpty()) {
             eventTitleText.setText(eventTitle);
@@ -103,5 +111,40 @@ public class EventActivity extends AppCompatActivity {
         }
 
         return base;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadEvent();
+    }
+
+    private void reloadEvent() {
+        if (eventId == -1) {
+            return;
+        }
+
+        DatabaseHelper.EventRecord eventRecord = databaseHelper.getEventById(eventId);
+        if (eventRecord == null) {
+            return;
+        }
+
+        eventTitle = eventRecord.name;
+        selectedDate = eventRecord.date;
+        eventTime = eventRecord.time;
+        eventDescription = eventRecord.description;
+
+        if (eventTitle != null && !eventTitle.isEmpty()) {
+            eventTitleText.setText(eventTitle);
+        }
+
+        String formattedDateTime = formatDateForEventRow(selectedDate, eventTime);
+        eventDateTimeRow.setRowText(formattedDateTime);
+
+        if (eventDescription != null && !eventDescription.isEmpty()) {
+            eventDescriptionRow.setRowText(eventDescription);
+        } else {
+            eventDescriptionRow.setRowText("No description");
+        }
     }
 }

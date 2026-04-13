@@ -226,6 +226,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return events;
     }
 
+    public EventRecord getEventById(int eventId) {
+        SQLiteDatabase database = getReadableDatabase();
+
+        Cursor cursor = database.query(
+                TABLE_EVENTS,
+            new String[]{
+                COLUMN_EVENT_ID,
+                COLUMN_EVENT_USERNAME,
+                COLUMN_EVENT_NAME,
+                COLUMN_EVENT_DATE,
+                COLUMN_EVENT_TIME,
+                COLUMN_EVENT_DESCRIPTION
+            },
+                COLUMN_EVENT_ID + " = ?",
+            new String[]{String.valueOf(eventId)},
+            null,
+            null,
+            null
+        );
+
+        EventRecord eventRecord = null;
+
+        if (cursor.moveToFirst()) {
+            int id = cursor.getInt(0);
+            String eventUsername = cursor.getString(1);
+            String name = cursor.getString(2);
+            String eventDate = cursor.getString(3);
+            String time = cursor.getString(4);
+            String description = cursor.getString(5);
+
+            eventRecord = new EventRecord(id, eventUsername, name, eventDate, time, description);
+        }
+
+        cursor.close();
+        return eventRecord;
+    }
+
     public static class EventRecord {
         public final int id;
         public final String username;

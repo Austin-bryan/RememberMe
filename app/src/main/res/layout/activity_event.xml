@@ -23,13 +23,17 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/backButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
                 android:contentDescription="Back"
                 android:src="@drawable/ic_arrow_left"
-                android:tint="@color/white" />
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true"
+                app:tint="@color/text_primary" />
 
             <TextView
                 android:id="@+id/eventTitleText"

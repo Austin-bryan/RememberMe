@@ -122,11 +122,12 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        openCalendarScreen();
+        openCalendarScreen(username);
     }
 
-    private void openCalendarScreen() {
+    private void openCalendarScreen(String currentUsername) {
         Intent intent = new Intent(this, CalendarActivity.class);
+        intent.putExtra("currentUsername", currentUsername);
 
         startActivity(intent);
         finish();

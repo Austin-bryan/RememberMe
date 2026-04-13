@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class DayViewActivity extends AppCompatActivity {
     private String selectedDate;
+    private String currentUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +20,23 @@ public class DayViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_day_view);
 
         selectedDate = getIntent().getStringExtra("selectedDate");
+        currentUsername = getIntent().getStringExtra("currentUsername");
 
         TextView dayHeaderText = findViewById(R.id.dayHeaderText);
-        AppCompatImageButton backButton = findViewById(R.id.backButton);
-        MaterialButton eventButton = findViewById(R.id.newEventButton);
 
+        AppCompatImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(view -> finish());
+
+        MaterialButton eventButton = findViewById(R.id.newEventButton);
         eventButton.setOnClickListener(view -> {
-            Intent intent = new Intent(DayViewActivity.this, NewEventActivity.class);
+            Intent intent = new Intent(
+                DayViewActivity.this,
+                NewEventActivity.class
+            );
+
+            intent.putExtra("username", currentUsername);
             intent.putExtra("title", "Create New Event");
+
             startActivity(intent);
         });
 

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity {
+    private String currentUsername;
     private final List<String> days = List.of(
             "Mar 1", "2", "3", "4", "5", "6", "7",
             "8", "9", "10", "11", "12", "13", "14",
@@ -22,8 +23,9 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
 
+        currentUsername = getIntent().getStringExtra("currentUsername");
+        setContentView(R.layout.activity_calendar);
         populateCalendarDays();
     }
 
@@ -71,6 +73,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(CalendarActivity.this, DayViewActivity.class);
                     intent.putExtra("selectedDate", selectedDate);
+                    intent.putExtra("currentUsername", currentUsername);
                     startActivity(intent);
                 });
 

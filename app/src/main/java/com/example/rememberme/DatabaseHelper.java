@@ -8,12 +8,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "remember_me.db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String COLUMN_SMS_PERMISSION = "sms_permission";
+    private static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_USERS = "users";
     public static final String COLUMN_USER_ID = "id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
+    public static final String TABLE_SETTINGS = "settings";
+    public static final String COLUMN_SETTING_KEY = "setting_key";
+    public static final String COLUMN_SETTING_VALUE = "setting_value";
+    public static final String KEY_SMS_PERMISSION = "sms_permission";
+    public static final String TABLE_EVENTS = "events";
+    public static final String COLUMN_EVENT_ID = "id";
+    public static final String COLUMN_EVENT_USERNAME = "username";
+    public static final String COLUMN_EVENT_NAME = "name";
+    public static final String COLUMN_EVENT_DATE = "event_date";
+    public static final String COLUMN_EVENT_TIME = "event_time";
+    public static final String COLUMN_EVENT_DESCRIPTION = "description";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,13 +33,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        String createUsersTable = "CREATE TABLE " + TABLE_USERS + " ("
+        String createUsersTable =
+            "CREATE TABLE " + TABLE_USERS + " ("
                 + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_USERNAME + " TEXT UNIQUE NOT NULL, "
-                + COLUMN_PASSWORD + " TEXT NOT NULL"
-                + ");";
+                + COLUMN_PASSWORD + " TEXT NOT NULL,"
+                + COLUMN_SMS_PERMISSION + " INTEGER"
+            + ");";
 
         database.execSQL(createUsersTable);
+
+        String createEventsTable =
+        "CREATE TABLE " + TABLE_EVENTS + " ("
+            + COLUMN_EVENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_EVENT_USERNAME + " TEXT NOT NULL, "
+            + COLUMN_EVENT_NAME + " TEXT NOT NULL, "
+            + COLUMN_EVENT_DATE + " TEXT NOT NULL, "
+            + COLUMN_EVENT_TIME + " TEXT NOT NULL, "
+            + COLUMN_EVENT_DESCRIPTION + " TEXT"
+        + ");";
+
+        database.execSQL(createEventsTable);
     }
 
     @Override
@@ -85,5 +111,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean valid = cursor.moveToFirst();
         cursor.close();
         return valid;
+    }
+
+    public Integer getSmsPermissionState(String username) {
+        SQLiteDatabase database = getReadableDatabase();
+
+        Cursor cursor = database.query(
+                TABLE_USERS,
+                new String[]{COLUMN_SMS_PERMISSION},
+                COLUMN_USERNAME + " = ?",
+                new String[]{username},
+                null,
+                null,
+                null
+        );
+
+        Integer result = null;
+
+        if (cursor.moveToFirst() && !cursor.isNull(0)) {
+            result = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return result;
+    }
+
+    public boolean setSmsPermissionState(String username, int permissionValue) {
+        SQLiteDatabase database = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SMS_PERMISSION, permissionValue);
+
+        int rowsUpdated = database.update(
+                TABLE_USERS,
+                values,
+                COLUMN_USERNAME + " = ?",
+                new String[]{username}
+        );
+
+        return rowsUpdated > 0;
+    }
+
+    public long insertEvent(String username, String name, String date, String time, String description) {
+        SQLiteDatabase database = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EVENT_USERNAME, username);
+        values.put(COLUMN_EVENT_NAME, name);
+        values.put(COLUMN_EVENT_DATE, date);
+        values.put(COLUMN_EVENT_TIME, time);
+        values.put(COLUMN_EVENT_DESCRIPTION, description);
+
+        return database.insert(TABLE_EVENTS, null, values);
+    }
+
+    public boolean updateEvent(int eventId, String username, String name, String date, String time, String description) {
+        SQLiteDatabase database = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EVENT_USERNAME, username);
+        values.put(COLUMN_EVENT_NAME, name);
+        values.put(COLUMN_EVENT_DATE, date);
+        values.put(COLUMN_EVENT_TIME, time);
+        values.put(COLUMN_EVENT_DESCRIPTION, description);
+
+        int rowsUpdated = database.update(
+                TABLE_EVENTS,
+                values,
+                COLUMN_EVENT_ID + " = ?",
+                new String[]{String.valueOf(eventId)}
+        );
+
+        return rowsUpdated > 0;
     }
 }

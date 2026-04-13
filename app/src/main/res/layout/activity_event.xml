@@ -46,13 +46,17 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/editButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Edit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="Back"
                 android:src="@drawable/ic_edit"
-                android:tint="@color/white" />
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true"
+                app:tint="@color/text_primary" />
 
         </LinearLayout>
 
@@ -74,6 +78,7 @@
             android:paddingBottom="10dp">
 
             <com.example.rememberme.IconTextView
+                android:id="@+id/eventDateTimeRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_arrow_left"
@@ -104,9 +109,10 @@
             android:paddingBottom="12dp">
 
             <com.example.rememberme.IconTextView
+                android:id="@+id/eventDescriptionRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:rowIcon="@drawable/ic_location"
+                app:rowIcon="@drawable/ic_text"
                 app:rowIconTint="@color/text_muted"
                 app:rowText="Bell Labs"
                 app:rowTextColor="@color/text_primary" />

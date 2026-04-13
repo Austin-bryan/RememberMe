@@ -93,10 +93,14 @@ public class DayViewActivity extends AppCompatActivity {
 
             timedEventView.setOnClickListener(view -> {
                 Intent intent = new android.content.Intent(DayViewActivity.this, EventActivity.class);
+
                 intent.putExtra("username", currentUsername);
                 intent.putExtra("selectedDate", selectedDate);
                 intent.putExtra("eventId", eventRecord.id);
                 intent.putExtra("title", eventRecord.name);
+                intent.putExtra("eventTime", eventRecord.time);
+                intent.putExtra("eventDescription", eventRecord.description);
+
                 startActivity(intent);
             });
 

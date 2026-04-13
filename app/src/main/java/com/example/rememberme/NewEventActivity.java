@@ -26,7 +26,13 @@ public class NewEventActivity extends AppCompatActivity {
     private String selectedDate;
     private DatabaseHelper databaseHelper;
 
+    // intent fields
     private int eventId = -1;
+
+    private String eventName = "";
+    private String eventTime = "";
+    private String eventDescription = "";
+
 
     private IconEditText eventNameInput;
     private IconEditText eventDateInput;
@@ -34,22 +40,22 @@ public class NewEventActivity extends AppCompatActivity {
     private IconEditText eventDescriptionInput;
 
     private final ActivityResultLauncher<String> smsPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    if (currentUsername != null && !currentUsername.isEmpty()) {
-                        databaseHelper.setSmsPermissionState(currentUsername, 1);
-                    }
-
-                    Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show();
-                    sendTestSms();
-                } else {
-                    if (currentUsername != null && !currentUsername.isEmpty()) {
-                        databaseHelper.setSmsPermissionState(currentUsername, 0);
-                    }
-
-                    Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show();
+        registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            if (isGranted) {
+                if (currentUsername != null && !currentUsername.isEmpty()) {
+                    databaseHelper.setSmsPermissionState(currentUsername, 1);
                 }
-            });
+
+                Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show();
+                sendTestSms();
+            } else {
+                if (currentUsername != null && !currentUsername.isEmpty()) {
+                    databaseHelper.setSmsPermissionState(currentUsername, 0);
+                }
+
+                Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
